@@ -52,6 +52,7 @@ Green = original danuglipron from the crystal structure, orange = redocked danug
 ## Validation and honest limitations
 - Re-docking: danuglipron was docked back into its own 7LCJ pocket. The best score was -12.89 kcal/mol, much stronger than caffeine at -6.226 kcal/mol.
 - No RMSD number is reported, on purpose. The original bound ligand had 41 atoms and the redocked pose had 42 atoms, so a simple RMSD calculation with matching atom order would have been misleading. Instead, the visual overlay above was used: green and orange overlap in the same pocket.
+- Atom count check, 5 Nov 2026: the 41 vs 42 gap is one hydrogen, not a heavy atom lost in docking. Danuglipron has 41 heavy atoms (formula C31H30FN5O4). The original 7LCJ ligand UK4 has 41 atoms, with no hydrogens in the crystal file. The input PDBQT made with RDKit and Meeko has 42 atoms: 41 heavy atoms plus 1 polar hydrogen, the H on the carboxylic acid OH. Docking does not change the topology of the molecule. See danuglipron-atom-count-check.md for the full check.
 - Docking uses a rigid receptor in this workflow, so protein movement is not modelled.
 - A docking score does not prove a compound is active, is a drug, or works in real life. Activity needs experiments.
 - Caffeine is a practice ligand only. It is NOT a GLP-1R drug, and its score must not be presented as a GLP-1R result.
@@ -59,6 +60,7 @@ Green = original danuglipron from the crystal structure, orange = redocked danug
 ## Files
 - glp1r_docking.ipynb: full Colab workflow, all stages in one notebook, including the fixes above
 - docking_results.csv: all pose scores
+- danuglipron-atom-count-check.md: atom count check, 41 vs 42 is one polar hydrogen
 - caffeine_pose_clean.jpg: viewer image, clean, caffeine pose
 - danuglipron_overlay_clean.jpg: viewer image, clean, re-docking overlay
 - Project4_Docking_Guide_Book.pdf: step-by-step guide book
